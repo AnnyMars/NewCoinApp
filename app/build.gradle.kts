@@ -59,6 +59,10 @@ android {
             dimension = "backend"
             buildConfigField("String", "BACKEND_URL", "\"https://pokeapi.co/\"")
         }
+        create("tz"){
+            dimension = "backend"
+            buildConfigField("String", "BACKEND_URL", "\"https://api.coingecko.com/api/v3/\"")
+        }
     }
 
     compileOptions {
