@@ -40,19 +40,19 @@ class RealCoinListComponent(
     override val coinsState = coinReplica.observe(this, errorHandler)
 
     override fun onCurrencyClick(currency: Currency) {
-        TODO("Not yet implemented")
+        selectedCurrency.value = currency
     }
 
     override fun onCoinClick(coinId: CoinId) {
-        TODO("Not yet implemented")
+        TODO()
     }
 
     override fun onRetryClick() {
-        TODO("Not yet implemented")
+        coinReplica.refresh()
     }
 
     override fun onRefresh() {
-        TODO("Not yet implemented")
+        coinReplica.refresh()
     }
 
     @Serializable
