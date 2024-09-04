@@ -8,7 +8,7 @@ import ru.mobileup.template.features.coin.domain.Currency
 
 interface CoinListComponent {
 
-    val currencys: List<Currency>
+    val currencies: List<Currency>
 
     val selectedCurrency: StateFlow<Currency>
 

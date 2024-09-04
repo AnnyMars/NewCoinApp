@@ -1,7 +1,7 @@
 package ru.mobileup.template.features.coin.presentation.list
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,8 +17,6 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -62,7 +60,7 @@ fun CoinListUi(
             modifier = Modifier.fillMaxSize()
         ) {
             CurrencyRow(
-                currencys = component.currencys,
+                currencys = component.currencies,
                 selectedCurrency = selectedCurrency,
                 onCurrencyClick = component::onCurrencyClick
             )
@@ -71,16 +69,15 @@ fun CoinListUi(
                 state = coinState,
                 onRefresh = component::onRefresh,
                 onRetryClick = component::onRetryClick
-            ) { coins, refreshing ->
+            ) { coins, _ ->
                 if (coins.isNotEmpty()) {
                     CoinListContent(
                         coins = coins,
                         onCoinClick = component::onCoinClick
                     )
                 } else {
-                    EmptyPlaceholder(description = "Coins not found")
+                    EmptyPlaceholder(description = stringResource(id = R.string.coin_ui_error))
                 }
-                RefreshingProgress(active = refreshing)
             }
         }
     }
@@ -101,7 +98,6 @@ fun CurrencyRow(
         Column(Modifier.statusBarsPadding()) {
             Text(
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 12.dp),
-//                text = stringResource(id = R.string.coin_ui_title),
                 text = stringResource(id = R.string.coin_ui_title),
                 style = CustomTheme.typography.title.regular,
             )
@@ -114,7 +110,7 @@ fun CurrencyRow(
                 currencys.forEach {
                     CurrencyItem(
                         currency = it,
-                        isSelected = it.name == selectedCurrency.name,
+                        isSelected = it == selectedCurrency,
                         onClick = { onCurrencyClick(it) }
                     )
                 }
@@ -148,66 +144,61 @@ private fun CoinItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = RectangleShape,
-        onClick = { onClick() }
+    Row(
+        modifier = modifier
+            .clickable {onClick() }
+            .padding(vertical = 1.dp)
+            .fillMaxWidth()
+            .background(color = Color.White.copy(alpha = 0.5f), shape = RectangleShape)
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 5.dp)
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(color = Color.Red)
-            )
-            Spacer(modifier = Modifier.width(5.dp))
-            Column {
-                Text(
-                    text = coin.name,
-                    style = TextStyle(
-                        color = Color.Black,
-                        fontWeight = FontWeight(500),
-                        fontSize = 16.sp
-                    )
-                )
-                Text(
-                    text = coin.symbol,
-                    style = TextStyle(
-                        color = Color.Gray,
-                        fontWeight = FontWeight(400),
-                        fontSize = 14.sp
-                    )
-                )
-            }
-            Spacer(modifier = Modifier.weight(1f))
+        Box(
+            modifier = Modifier
+                .size(40.dp)
+                .background(color = Color.Red)
+        )
 
-            Column {
-                Text(
-                    text = coin.currentPrice,
-                    style = TextStyle(
-                        color = Color.Black,
-                        fontWeight = FontWeight(600),
-                        fontSize = 16.sp
-                    )
-                )
-                Text(
-                    modifier = Modifier.align(Alignment.End),
-                    text = coin.priceChangePercentage24h,
-                    style = TextStyle(
-                        color = Color.Gray,
-                        fontWeight = FontWeight(400),
-                        fontSize = 14.sp
-                    )
-                )
-            }
+        Spacer(modifier = Modifier.width(3.dp))
+
+        Column {
+            Text(
+                text = coin.name,
+                style = CustomTheme.typography.coinCardText.topText
+            )
+            Text(
+                text = coin.symbol,
+                style = CustomTheme.typography.coinCardText.bottomText
+            )
         }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Column {
+            Text(
+                modifier = Modifier.align(Alignment.End),
+                text = coin.currentPrice,
+                style = TextStyle(
+                    color = Color.Black,
+                    fontWeight = FontWeight(600),
+                    fontSize = 16.sp
+                )
+            )
+            Text(
+                modifier = Modifier.align(Alignment.End),
+                text = coin.priceChangePercentage24h,
+                style = TextStyle(
+                    color = Color.Gray,
+                    fontWeight = FontWeight(400),
+                    fontSize = 14.sp
+                )
+            )
+        }
+
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun CoinListUiPreview(){
+fun CoinListUiPreview() {
     AppTheme {
         CoinListUi(component = FakeCoinListComponent())
     }

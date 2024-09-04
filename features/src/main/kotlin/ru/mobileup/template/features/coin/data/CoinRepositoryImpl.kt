@@ -5,6 +5,7 @@ import me.aartikov.replica.keyed.KeyedPhysicalReplica
 import me.aartikov.replica.keyed.KeyedReplica
 import me.aartikov.replica.keyed.KeyedReplicaSettings
 import me.aartikov.replica.single.ReplicaSettings
+import ru.mobileup.template.features.coin.data.dto.CoinsResponse.Companion.toDomain
 import ru.mobileup.template.features.coin.data.dto.toDomain
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.Currency

@@ -20,8 +20,8 @@ import ru.mobileup.template.features.coin.domain.Currency
 fun CurrencyItem(
     currency: Currency,
     modifier: Modifier = Modifier,
-    isSelected: Boolean = false,
-    onClick: (() -> Unit)? = null
+    isSelected: Boolean,
+    onClick: () -> Unit
 ) {
     Surface(
         modifier = modifier,
@@ -38,9 +38,9 @@ fun CurrencyItem(
             text = currency.name,
             style = CustomTheme.typography.body.regular,
             color = if (isSelected) {
-                CustomTheme.colors.text.invert
-            } else {
                 CustomTheme.colors.text.primary
+            } else {
+                CustomTheme.colors.text.invert
             },
             modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
         )

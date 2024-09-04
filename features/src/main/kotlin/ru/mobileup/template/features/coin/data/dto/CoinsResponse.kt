@@ -21,15 +21,18 @@ data class CoinsResponse(
     val image: String,
     @SerialName("market_data")
     val marketData: MarketData
-)
-
-fun CoinsResponse.toDomain(): Coin {
-    return Coin(
-        id = CoinId(id),
-        symbol = symbol.uppercase(),
-        name = name,
-        currentPrice = currentPrice.toString(),
-        image = image,
-        priceChangePercentage24h = "${marketData.priceChangePercentage24h}%"
-    )
+) {
+    companion object {
+        fun CoinsResponse.toDomain(): Coin {
+            return Coin(
+                id = CoinId(id),
+                symbol = symbol,
+                name = name,
+                currentPrice = currentPrice.toString(),
+                image = image,
+                priceChangePercentage24h = "${marketData.priceChangePercentage24h}%"
+            )
+        }
+    }
 }
+

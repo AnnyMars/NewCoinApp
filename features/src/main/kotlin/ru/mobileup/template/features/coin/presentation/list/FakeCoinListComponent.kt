@@ -9,16 +9,15 @@ import ru.mobileup.template.features.coin.domain.Currency
 
 class FakeCoinListComponent: CoinListComponent {
 
-    override val currencys: List<Currency> = listOf(
+    override val currencies: List<Currency> = listOf(
         Currency.USD,
         Currency.RUB
     )
 
-    override val selectedCurrency: StateFlow<Currency> = MutableStateFlow(currencys[0])
+    override val selectedCurrency: StateFlow<Currency> = MutableStateFlow(currencies[0])
 
     override val coinsState: StateFlow<LoadableState<List<Coin>>> = MutableStateFlow(
         LoadableState(
-            loading = true,
             data = listOf(
                 Coin(
                     id = CoinId("bitcoin"),
