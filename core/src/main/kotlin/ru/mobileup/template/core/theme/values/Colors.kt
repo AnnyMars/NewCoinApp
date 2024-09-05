@@ -3,6 +3,7 @@ package ru.mobileup.template.core.theme.values
 import androidx.compose.ui.graphics.Color
 import ru.mobileup.template.core.theme.custom.BackgroundColors
 import ru.mobileup.template.core.theme.custom.ButtonColors
+import ru.mobileup.template.core.theme.custom.CurrencyColors
 import ru.mobileup.template.core.theme.custom.CustomColors
 import ru.mobileup.template.core.theme.custom.IconColors
 import ru.mobileup.template.core.theme.custom.TextColors
@@ -26,6 +27,10 @@ val LightAppColors = CustomColors(
     button = ButtonColors(
         primary = Color(0xFF6750A4),
         secondary = Color(0xFFFFFFFF),
+    ),
+    currencyButton = CurrencyColors(
+        selected = Color(0xFFFF9F00),
+        unselected = Color.Gray
     )
 )
 

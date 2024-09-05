@@ -8,7 +8,8 @@ data class CustomColors(
     val background: BackgroundColors,
     val text: TextColors,
     val icon: IconColors,
-    val button: ButtonColors
+    val button: ButtonColors,
+    val currencyButton: CurrencyColors
 )
 
 data class BackgroundColors(
@@ -31,6 +32,11 @@ data class IconColors(
 data class ButtonColors(
     val primary: Color,
     val secondary: Color
+)
+
+data class CurrencyColors(
+    val selected: Color,
+    val unselected: Color
 )
 
 val LocalCustomColors = staticCompositionLocalOf<CustomColors?> { null }
