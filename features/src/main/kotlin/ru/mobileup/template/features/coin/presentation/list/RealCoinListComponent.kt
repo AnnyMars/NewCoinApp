@@ -2,21 +2,19 @@ package ru.mobileup.template.features.coin.presentation.list
 
 import com.arkivanov.decompose.ComponentContext
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.Serializable
 import me.aartikov.replica.algebra.normal.withKey
 import me.aartikov.replica.keyed.keepPreviousData
 import ru.mobileup.template.core.error_handling.ErrorHandler
-import ru.mobileup.template.core.utils.LoadableState
 import ru.mobileup.template.core.utils.observe
 import ru.mobileup.template.core.utils.persistent
 import ru.mobileup.template.features.coin.data.CoinRepository
-import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
 import ru.mobileup.template.features.coin.domain.Currency
 
 class RealCoinListComponent(
     componentContext: ComponentContext,
+    private val onOutput: (CoinListComponent.Output) -> Unit,
     coinRepository: CoinRepository,
     errorHandler: ErrorHandler
 ): ComponentContext by componentContext, CoinListComponent {
@@ -44,7 +42,7 @@ class RealCoinListComponent(
     }
 
     override fun onCoinClick(coinId: CoinId) {
-        TODO()
+        onOutput(CoinListComponent.Output.CoinDetailRequested(coinId))
     }
 
     override fun onRetryClick() {

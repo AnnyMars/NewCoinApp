@@ -50,15 +50,15 @@ android {
 
     setFlavorDimensions(listOf("backend"))
     productFlavors {
-        create("dev") {
-            dimension = "backend"
-            buildConfigField("String", "BACKEND_URL", "\"https://pokeapi.co/\"")
-        }
-
-        create("prod") {
-            dimension = "backend"
-            buildConfigField("String", "BACKEND_URL", "\"https://pokeapi.co/\"")
-        }
+//        create("dev") {
+//            dimension = "backend"
+//            buildConfigField("String", "BACKEND_URL", "\"https://pokeapi.co/\"")
+//        }
+//
+//        create("prod") {
+//            dimension = "backend"
+//            buildConfigField("String", "BACKEND_URL", "\"https://pokeapi.co/\"")
+//        }
         create("tz"){
             dimension = "backend"
             buildConfigField("String", "BACKEND_URL", "\"https://api.coingecko.com/api/v3/\"")

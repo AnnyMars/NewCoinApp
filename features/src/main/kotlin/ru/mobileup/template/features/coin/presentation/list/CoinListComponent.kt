@@ -22,4 +22,8 @@ interface CoinListComponent {
 
     fun onRefresh()
 
+    sealed interface Output {
+        data class CoinDetailRequested(val coinId: CoinId): Output
+    }
+
 }

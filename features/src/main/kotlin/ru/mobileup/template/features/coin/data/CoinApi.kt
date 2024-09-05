@@ -10,7 +10,7 @@ interface CoinApi {
 
     @GET("coins/markets")
     suspend fun getCoins(
-        @Query("vs_currency") vsCurrency: String? = null,
+        @Query("vs_currency") vsCurrency: String,
         @Query("per_page") perPage: Int = 30,
         @Query("page") page: Int = 1,
     ): List<CoinsResponse>

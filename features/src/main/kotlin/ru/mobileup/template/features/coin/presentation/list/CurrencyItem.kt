@@ -19,14 +19,13 @@ import ru.mobileup.template.features.coin.domain.Currency
 @Composable
 fun CurrencyItem(
     currency: Currency,
-    modifier: Modifier = Modifier,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         modifier = modifier,
-        onClick = { onClick?.invoke() },
-        enabled = onClick != null,
+        onClick = { onClick() },
         shape = RoundedCornerShape(48.dp),
         color = when (isSelected) {
             true -> CustomTheme.colors.currencyButton.selected
