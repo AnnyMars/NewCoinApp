@@ -3,7 +3,6 @@ package ru.mobileup.template.features.coin.presentation.list
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -26,17 +25,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.core.theme.custom.CustomTheme
+import ru.mobileup.template.core.utils.formatPricePercentage
 import ru.mobileup.template.core.widget.EmptyPlaceholder
 import ru.mobileup.template.core.widget.PullRefreshLceWidget
-import ru.mobileup.template.core.widget.RefreshingProgress
 import ru.mobileup.template.features.R
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
@@ -51,7 +53,7 @@ fun CoinListUi(
     val selectedCurrency by component.selectedCurrency.collectAsState()
 
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .navigationBarsPadding(),
         color = CustomTheme.colors.background.screen
@@ -60,7 +62,7 @@ fun CoinListUi(
             modifier = Modifier.fillMaxSize()
         ) {
             CurrencyRow(
-                currencys = component.currencies,
+                currencies = component.currencies,
                 selectedCurrency = selectedCurrency,
                 onCurrencyClick = component::onCurrencyClick
             )
@@ -85,7 +87,7 @@ fun CoinListUi(
 
 @Composable
 fun CurrencyRow(
-    currencys: List<Currency>,
+    currencies: List<Currency>,
     selectedCurrency: Currency,
     onCurrencyClick: (Currency) -> Unit,
     modifier: Modifier = Modifier
@@ -97,7 +99,9 @@ fun CurrencyRow(
     ) {
         Column(Modifier.statusBarsPadding()) {
             Text(
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 12.dp),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 12.dp),
                 text = stringResource(id = R.string.coin_ui_title),
                 style = CustomTheme.typography.title.regular,
             )
@@ -107,7 +111,7 @@ fun CurrencyRow(
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                currencys.forEach {
+                currencies.forEach {
                     CurrencyItem(
                         currency = it,
                         isSelected = it == selectedCurrency,
@@ -144,22 +148,30 @@ private fun CoinItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    val context = LocalContext.current
+
     Row(
         modifier = modifier
-            .clickable {onClick() }
+            .clickable { onClick() }
             .padding(vertical = 1.dp)
             .fillMaxWidth()
             .background(color = Color.White.copy(alpha = 0.5f), shape = RectangleShape)
     ) {
-        Box(
-            modifier = Modifier
-                .size(40.dp)
-                .background(color = Color.Red)
+        AsyncImage(
+            modifier = Modifier.size(40.dp),
+            model = ImageRequest.Builder(context)
+                .data(coin.image)
+                .crossfade(true)
+                .build(),
+            contentDescription =  "Coin item image"
         )
 
         Spacer(modifier = Modifier.width(3.dp))
 
-        Column {
+        Column(
+            modifier = Modifier.padding(start = 3.dp)
+        ) {
             Text(
                 text = coin.name,
                 style = CustomTheme.typography.coinCardText.topText
@@ -184,7 +196,7 @@ private fun CoinItem(
             )
             Text(
                 modifier = Modifier.align(Alignment.End),
-                text = coin.priceChangePercentage24h,
+                text = formatPricePercentage(coin.priceChangePercentage24h),
                 style = TextStyle(
                     color = Color.Gray,
                     fontWeight = FontWeight(400),
@@ -198,7 +210,7 @@ private fun CoinItem(
 
 @Preview(showSystemUi = true)
 @Composable
-fun CoinListUiPreview() {
+private fun CoinListUiPreview() {
     AppTheme {
         CoinListUi(component = FakeCoinListComponent())
     }

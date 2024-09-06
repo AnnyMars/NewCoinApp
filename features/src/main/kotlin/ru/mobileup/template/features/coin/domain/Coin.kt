@@ -12,5 +12,5 @@ data class Coin(
     val name: String,
     val currentPrice: String,
     val image: String,
-    val priceChangePercentage24h: String
+    val priceChangePercentage24h: Double
 )
