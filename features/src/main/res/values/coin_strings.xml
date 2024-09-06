@@ -2,4 +2,5 @@
 <resources>
     <string name="coin_ui_title">Список криптовалют</string>
     <string name="coin_ui_error">Монеты не найдены</string>
+    <string name="detail_coin_description">Описание</string>
 </resources>

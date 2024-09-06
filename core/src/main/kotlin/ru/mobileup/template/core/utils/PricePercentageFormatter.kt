@@ -1,5 +1,26 @@
 package ru.mobileup.template.core.utils
 
+import java.text.NumberFormat
+import java.util.Locale
+
 fun formatPricePercentage(value: Double): String {
     return String.format("%.2f%%", value)
+}
+
+fun formatCurrency(amount: Double, currencyCode: String): String {
+    return when (currencyCode) {
+        "USD" -> {
+            val dollarFormat = NumberFormat.getCurrencyInstance(Locale.US)
+            dollarFormat.maximumFractionDigits = 2
+            dollarFormat.minimumFractionDigits = 2
+            dollarFormat.format(amount)
+        }
+        "RUB" -> {
+            val rubleFormat = NumberFormat.getCurrencyInstance(Locale("ru", "RU"))
+            rubleFormat.maximumFractionDigits = 2
+            rubleFormat.minimumFractionDigits = 2
+            rubleFormat.format(amount)
+        }
+        else -> throw IllegalArgumentException("Unknown currency code")
+    }
 }

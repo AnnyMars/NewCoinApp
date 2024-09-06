@@ -9,6 +9,8 @@ import ru.mobileup.template.core.ComponentFactory
 import ru.mobileup.template.core.createMessageComponent
 import ru.mobileup.template.core.utils.toStateFlow
 import ru.mobileup.template.features.coin.createCoinComponent
+import ru.mobileup.template.features.coin.createCoinDetailComponent
+import ru.mobileup.template.features.coin.domain.CoinId
 
 class RealRootComponent(
     componentContext: ComponentContext,
@@ -19,7 +21,6 @@ class RealRootComponent(
 
     override val childStack = childStack(
         source = navigation,
-//        initialConfiguration = ChildConfig.Pokemons,
         initialConfiguration = ChildConfig.Coin,
         serializer = ChildConfig.serializer(),
         handleBackButton = true,
@@ -34,30 +35,27 @@ class RealRootComponent(
         config: ChildConfig,
         componentContext: ComponentContext
     ): RootComponent.Child = when (config) {
-//        is ChildConfig.Pokemons -> {
-//            RootComponent.Child.Pokemons(
-//                componentFactory.createPokemonsComponent(componentContext)
-//            )
-//        }
         is ChildConfig.Coin -> {
             RootComponent.Child.Coin(
                 componentFactory.createCoinComponent(componentContext)
             )
         }
+//        is ChildConfig.DetailCoin -> {
+//            RootComponent.Child.DetailCoin(
+//                componentFactory.createCoinDetailComponent(componentContext, config.coinId)
+//            )
+//        }
     }
 
-//    @Serializable
-//    sealed interface ChildConfig {
-//
-//        @Serializable
-//        data object Pokemons : ChildConfig
-//    }
 
     @Serializable
     sealed interface ChildConfig {
 
         @Serializable
         data object Coin: ChildConfig
+
+//        @Serializable
+//        data class DetailCoin(val coinId: CoinId): ChildConfig
 
     }
 }

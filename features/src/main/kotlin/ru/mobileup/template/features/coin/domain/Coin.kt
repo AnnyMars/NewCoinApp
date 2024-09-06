@@ -10,7 +10,7 @@ data class Coin(
     val id: CoinId,
     val symbol: String,
     val name: String,
-    val currentPrice: String,
+    val currentPrice: Double,
     val image: String,
     val priceChangePercentage24h: Double
 )

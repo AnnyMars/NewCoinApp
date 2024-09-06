@@ -7,6 +7,7 @@ import com.arkivanov.decompose.router.stack.push
 import kotlinx.serialization.Serializable
 import ru.mobileup.template.core.ComponentFactory
 import ru.mobileup.template.core.utils.toStateFlow
+import ru.mobileup.template.features.coin.createCoinDetailComponent
 import ru.mobileup.template.features.coin.createCoinListComponent
 import ru.mobileup.template.features.coin.domain.CoinId
 import ru.mobileup.template.features.coin.presentation.list.CoinListComponent
@@ -39,7 +40,14 @@ class RealCoinComponent(
             )
         }
 
-        is ChildConfig.Details -> TODO()
+        is ChildConfig.Details -> {
+            CoinComponent.Child.Detail(
+                componentFactory.createCoinDetailComponent(
+                    componentContext,
+                    config.coinId
+                )
+            )
+        }
     }
 
     private fun onCoinListOutput(output: CoinListComponent.Output) {

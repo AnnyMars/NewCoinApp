@@ -8,7 +8,8 @@ data class CustomTypography(
     val body: BodyTypography,
     val caption: CaptionTypography,
     val button: ButtonTypography,
-    val coinCardText: CoinCardText
+    val coinCardText: CoinCardText,
+    val detailCoinText: DetailCoinText
 )
 
 data class TitleTypography(
@@ -30,6 +31,11 @@ data class ButtonTypography(
 data class CoinCardText(
     val topText: TextStyle,
     val bottomText: TextStyle
+)
+
+data class DetailCoinText(
+    val baseText: TextStyle,
+    val realText: TextStyle
 )
 
 val LocalCustomTypography = staticCompositionLocalOf<CustomTypography?> { null }

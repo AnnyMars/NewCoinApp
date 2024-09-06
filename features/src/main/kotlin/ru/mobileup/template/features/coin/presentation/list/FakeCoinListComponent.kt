@@ -23,25 +23,25 @@ class FakeCoinListComponent: CoinListComponent {
                     id = CoinId("bitcoin"),
                     symbol = "btc",
                     name = "Bitcoin",
-                    currentPrice = "100",
+                    currentPrice = 100.0,
                     image = "",
-                    priceChangePercentage24h = "1.2"
+                    priceChangePercentage24h = 1.2
                 ),
                 Coin(
                     id = CoinId("ethereum"),
                     symbol = "eth",
                     name = "Ethereum",
-                    currentPrice = "200",
+                    currentPrice = 1.00,
                     image = "",
-                    priceChangePercentage24h = "5.111"
+                    priceChangePercentage24h = 5.111
                 ),
                 Coin(
                     id = CoinId("tether"),
                     symbol = "usdt",
                     name = "Tether",
-                    currentPrice = "300",
+                    currentPrice = 300.10,
                     image = "",
-                    priceChangePercentage24h = "-6.0"
+                    priceChangePercentage24h = -6.0
                 ),
             )
         )
