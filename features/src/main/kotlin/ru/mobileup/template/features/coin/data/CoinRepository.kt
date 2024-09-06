@@ -8,7 +8,7 @@ import ru.mobileup.template.features.coin.domain.DetailedCoin
 
 interface CoinRepository {
 
-    val coinList: KeyedReplica<Currency, List<Coin>>
+    val coinListReplica: KeyedReplica<Currency, List<Coin>>
 
-    val coinById: KeyedReplica<CoinId, DetailedCoin>
+    val coinDetailsReplica: KeyedReplica<CoinId, DetailedCoin>
 }

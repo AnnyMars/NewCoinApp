@@ -15,7 +15,7 @@ import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.core.theme.custom.CustomTheme
 import ru.mobileup.template.core.utils.LocalSystemBarsSettings
 import ru.mobileup.template.core.utils.accumulate
-import ru.mobileup.template.features.coin.presentation.CoinUI
+import ru.mobileup.template.features.coin.presentation.CoinUi
 
 @Composable
 fun RootUi(
@@ -31,7 +31,7 @@ fun RootUi(
 //            is RootComponent.Child.Pokemons -> PokemonsUi(instance.component)
 //        }
         when (val instance = child.instance){
-            is RootComponent.Child.Coin -> CoinUI(component = instance.component)
+            is RootComponent.Child.Coin -> CoinUi(component = instance.component)
         }
     }
 

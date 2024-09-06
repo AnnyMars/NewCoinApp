@@ -23,7 +23,8 @@ data class CoinsResponse(
                 name = name,
                 currentPrice = currentPrice.toString(),
                 image = image,
-                priceChangePercentage24h = pricePercentageFormatter(priceChangePercentage24h)
+//                priceChangePercentage24h = pricePercentageFormatter(priceChangePercentage24h)
+                priceChangePercentage24h = priceChangePercentage24h
             )
         }
     }

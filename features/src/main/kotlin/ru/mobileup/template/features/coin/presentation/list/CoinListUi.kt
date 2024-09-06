@@ -37,6 +37,7 @@ import coil.request.CachePolicy
 import coil.request.ImageRequest
 import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.core.theme.custom.CustomTheme
+import ru.mobileup.template.core.utils.pricePercentageFormatter
 import ru.mobileup.template.core.widget.EmptyPlaceholder
 import ru.mobileup.template.core.widget.PullRefreshLceWidget
 import ru.mobileup.template.features.R
@@ -160,14 +161,18 @@ private fun CoinItem(
     ) {
         AsyncImage(
             modifier = Modifier.size(40.dp),
-            model = ImageRequest.Builder(context).data(coin.image)
+            model = ImageRequest.Builder(context)
+                .data(coin.image)
                 .crossfade(true)
-                .diskCachePolicy(CachePolicy.ENABLED).build(), contentDescription =  "Coin item image"
+                .build(),
+            contentDescription =  "Coin item image"
         )
 
         Spacer(modifier = Modifier.width(3.dp))
 
-        Column {
+        Column(
+            modifier = Modifier.padding(start = 3.dp)
+        ) {
             Text(
                 text = coin.name,
                 style = CustomTheme.typography.coinCardText.topText
@@ -192,7 +197,7 @@ private fun CoinItem(
             )
             Text(
                 modifier = Modifier.align(Alignment.End),
-                text = coin.priceChangePercentage24h,
+                text = pricePercentageFormatter(coin.priceChangePercentage24h),
                 style = TextStyle(
                     color = Color.Gray,
                     fontWeight = FontWeight(400),
@@ -206,7 +211,7 @@ private fun CoinItem(
 
 @Preview(showSystemUi = true)
 @Composable
-fun CoinListUiPreview() {
+private fun CoinListUiPreview() {
     AppTheme {
         CoinListUi(component = FakeCoinListComponent())
     }

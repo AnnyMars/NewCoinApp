@@ -10,7 +10,7 @@ import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.features.coin.presentation.list.CoinListUi
 
 @Composable
-fun CoinUI(
+fun CoinUi(
     component: CoinComponent,
     modifier: Modifier = Modifier
 ){
@@ -25,8 +25,8 @@ fun CoinUI(
 
 @Preview
 @Composable
-fun CoinUIPreview(){
+private fun CoinUIPreview(){
     AppTheme {
-        CoinUI(component = FakeCoinComponent())
+        CoinUi(component = FakeCoinComponent())
     }
 }

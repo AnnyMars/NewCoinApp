@@ -17,7 +17,7 @@ class CoinRepositoryImpl(
     api: CoinApi
 ): CoinRepository {
 
-    override val coinList: KeyedReplica<Currency, List<Coin>> =
+    override val coinListReplica: KeyedReplica<Currency, List<Coin>> =
         replicaClient.createKeyedReplica(
             name = "allCoins",
             childName = { "vs_currency = $it" },
@@ -31,7 +31,7 @@ class CoinRepositoryImpl(
             }
         )
 
-    override val coinById: KeyedReplica<CoinId, DetailedCoin> =
+    override val coinDetailsReplica: KeyedReplica<CoinId, DetailedCoin> =
         replicaClient.createKeyedReplica(
             name = "coinById",
             childName = { coinId -> "coinId = ${coinId.value}" },

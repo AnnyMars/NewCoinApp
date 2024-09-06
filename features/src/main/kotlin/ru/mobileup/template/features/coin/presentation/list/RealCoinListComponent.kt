@@ -25,7 +25,7 @@ class RealCoinListComponent(
     )
     override val selectedCurrency = MutableStateFlow(currencies[0])
 
-    private val coinReplica = coinRepository.coinList.keepPreviousData().withKey(selectedCurrency)
+    private val coinReplica = coinRepository.coinListReplica.keepPreviousData().withKey(selectedCurrency)
 
     init {
         persistent(
