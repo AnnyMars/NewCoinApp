@@ -10,7 +10,7 @@ import ru.mobileup.template.core.utils.observe
 import ru.mobileup.template.core.utils.persistent
 import ru.mobileup.template.features.coin.data.CoinRepository
 import ru.mobileup.template.features.coin.domain.CoinId
-import ru.mobileup.template.features.coin.domain.Currency
+import ru.mobileup.template.core.common_domain.Currency
 
 class RealCoinListComponent(
     componentContext: ComponentContext,

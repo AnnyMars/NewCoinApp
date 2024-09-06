@@ -9,13 +9,7 @@ import ru.mobileup.template.features.coin.domain.DetailedCoin
 class FakeCoinDetailComponent : CoinDetailComponent {
     override val coinState = MutableStateFlow(
         LoadableState(
-            data = DetailedCoin(
-                id = CoinId("bitcoin"),
-                name = "Bitcoin",
-                image = "",
-                description = "",
-                categories = listOf("Category 1", "Category 2", "Category 3")
-            )
+            data = DetailedCoin.MOCK
         )
     )
 

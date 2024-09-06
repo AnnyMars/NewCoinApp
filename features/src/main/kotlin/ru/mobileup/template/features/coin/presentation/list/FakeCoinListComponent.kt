@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.template.core.utils.LoadableState
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
-import ru.mobileup.template.features.coin.domain.Currency
+import ru.mobileup.template.core.common_domain.Currency
 
 class FakeCoinListComponent: CoinListComponent {
 
@@ -18,32 +18,7 @@ class FakeCoinListComponent: CoinListComponent {
 
     override val coinsState: StateFlow<LoadableState<List<Coin>>> = MutableStateFlow(
         LoadableState(
-            data = listOf(
-                Coin(
-                    id = CoinId("bitcoin"),
-                    symbol = "btc",
-                    name = "Bitcoin",
-                    currentPrice = 100.0,
-                    image = "",
-                    priceChangePercentage24h = 1.2
-                ),
-                Coin(
-                    id = CoinId("ethereum"),
-                    symbol = "eth",
-                    name = "Ethereum",
-                    currentPrice = 1.00,
-                    image = "",
-                    priceChangePercentage24h = 5.111
-                ),
-                Coin(
-                    id = CoinId("tether"),
-                    symbol = "usdt",
-                    name = "Tether",
-                    currentPrice = 300.10,
-                    image = "",
-                    priceChangePercentage24h = -6.0
-                ),
-            )
+            data = Coin.MOCKS
         )
     )
 

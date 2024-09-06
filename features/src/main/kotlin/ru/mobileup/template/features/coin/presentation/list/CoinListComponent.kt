@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.template.core.utils.LoadableState
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
-import ru.mobileup.template.features.coin.domain.Currency
+import ru.mobileup.template.core.common_domain.Currency
 
 interface CoinListComponent {
 

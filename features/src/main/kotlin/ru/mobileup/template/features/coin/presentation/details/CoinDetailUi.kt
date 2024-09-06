@@ -28,6 +28,7 @@ import coil.request.ImageRequest
 import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.core.theme.custom.CustomTheme
 import ru.mobileup.template.core.utils.dispatchOnBackPressed
+import ru.mobileup.template.core.widget.CoilImageWidget
 import ru.mobileup.template.core.widget.PullRefreshLceWidget
 import ru.mobileup.template.features.R
 import ru.mobileup.template.features.coin.domain.DetailedCoin
@@ -59,8 +60,7 @@ fun CoinDetailUi(
                 onRetryClick = component::onRetryClick
             ) { coin, _ ->
                 CoinDetailContent(
-                    coin = coin,
-                    context = context
+                    coin = coin
                 )
             }
         }
@@ -70,7 +70,6 @@ fun CoinDetailUi(
 @Composable
 private fun CoinDetailContent(
     coin: DetailedCoin,
-    context: Context,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -79,16 +78,12 @@ private fun CoinDetailContent(
             .padding(5.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        AsyncImage(
+        CoilImageWidget(
+            url = coin.image,
             modifier = Modifier
                 .size(90.dp)
                 .align(Alignment.CenterHorizontally)
-                .padding(top = 10.dp),
-            model = ImageRequest.Builder(context)
-                .data(coin.image)
-                .crossfade(true)
-                .build(),
-            contentDescription = ""
+                .padding(top = 10.dp)
         )
         Text(
             modifier = Modifier.padding(start = 8.dp, top = 10.dp),
@@ -102,12 +97,12 @@ private fun CoinDetailContent(
         )
         Text(
             modifier = Modifier.padding(start = 8.dp, top = 10.dp),
-            text = "Категории",
+            text = stringResource(id = R.string.detail_coin_category),
             style = CustomTheme.typography.detailCoinText.baseText
         )
         Text(
             modifier = Modifier.padding(start = 8.dp, top = 5.dp),
-            text = coin.categories.joinToString(",").trim(),
+            text = coin.categories.joinToString(", ").trim(),
             style = CustomTheme.typography.detailCoinText.realText
         )
     }

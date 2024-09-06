@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.core.theme.custom.CustomTheme
-import ru.mobileup.template.features.coin.domain.Currency
+import ru.mobileup.template.core.common_domain.Currency
 
 @Composable
 fun CurrencyItem(

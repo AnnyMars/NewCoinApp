@@ -43,7 +43,7 @@ import ru.mobileup.template.core.widget.PullRefreshLceWidget
 import ru.mobileup.template.features.R
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
-import ru.mobileup.template.features.coin.domain.Currency
+import ru.mobileup.template.core.common_domain.Currency
 
 @Composable
 fun CoinListUi(
@@ -191,7 +191,7 @@ private fun CoinItem(
         Column {
             Text(
                 modifier = Modifier.align(Alignment.End),
-                text = formatCurrency(coin.currentPrice, currency.name),
+                text = formatCurrency(coin.currentPrice, currency),
                 style = TextStyle(
                     color = Color.Black,
                     fontWeight = FontWeight(600),

@@ -8,7 +8,7 @@ import ru.mobileup.template.features.coin.data.dto.CoinByIdResponse.Companion.to
 import ru.mobileup.template.features.coin.data.dto.CoinsResponse.Companion.toDomain
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
-import ru.mobileup.template.features.coin.domain.Currency
+import ru.mobileup.template.core.common_domain.Currency
 import ru.mobileup.template.features.coin.domain.DetailedCoin
 import kotlin.time.Duration.Companion.minutes
 

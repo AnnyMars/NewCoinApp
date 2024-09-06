@@ -55,6 +55,7 @@ dependencies {
     // UI
     implementation(libs.bundles.compose)
     implementation(libs.bundles.accompanist)
+    implementation(libs.coil)
 
     // DI
     implementation(libs.koin)
