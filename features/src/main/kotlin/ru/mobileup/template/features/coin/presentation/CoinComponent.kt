@@ -2,6 +2,7 @@ package ru.mobileup.template.features.coin.presentation
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import kotlinx.coroutines.flow.StateFlow
+import ru.mobileup.template.features.coin.presentation.details.CoinDetailComponent
 import ru.mobileup.template.features.coin.presentation.list.CoinListComponent
 
 interface CoinComponent {
@@ -10,6 +11,7 @@ interface CoinComponent {
 
     sealed interface Child{
         class List(val component: CoinListComponent): Child
+        class Detail(val component: CoinDetailComponent): Child
     }
 
 }

@@ -20,7 +20,7 @@ data class CoinsResponse(
                 id = CoinId(id),
                 symbol = symbol,
                 name = name,
-                currentPrice = currentPrice.toString(),
+                currentPrice = currentPrice,
                 image = image,
                 priceChangePercentage24h = priceChangePercentage24h
             )

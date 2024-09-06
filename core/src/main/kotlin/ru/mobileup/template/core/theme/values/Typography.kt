@@ -9,6 +9,7 @@ import ru.mobileup.template.core.theme.custom.ButtonTypography
 import ru.mobileup.template.core.theme.custom.CaptionTypography
 import ru.mobileup.template.core.theme.custom.CoinCardText
 import ru.mobileup.template.core.theme.custom.CustomTypography
+import ru.mobileup.template.core.theme.custom.DetailCoinText
 import ru.mobileup.template.core.theme.custom.TitleTypography
 
 val AppTypography = CustomTypography(
@@ -43,6 +44,18 @@ val AppTypography = CustomTypography(
             color = Color.Gray,
             fontWeight = FontWeight(400),
             fontSize = 14.sp
+        )
+    ),
+    detailCoinText = DetailCoinText(
+        baseText = TextStyle(
+            color = Color.Black,
+            fontSize = 20.sp,
+            fontWeight = FontWeight(500)
+        ),
+        realText = TextStyle(
+            color = Color.Black,
+            fontSize = 16.sp,
+            fontWeight = FontWeight(400)
         )
     )
 )

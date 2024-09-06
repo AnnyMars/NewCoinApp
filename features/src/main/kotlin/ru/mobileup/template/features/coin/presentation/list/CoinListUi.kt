@@ -36,13 +36,14 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.core.theme.custom.CustomTheme
+import ru.mobileup.template.core.utils.formatCurrency
 import ru.mobileup.template.core.utils.formatPricePercentage
 import ru.mobileup.template.core.widget.EmptyPlaceholder
 import ru.mobileup.template.core.widget.PullRefreshLceWidget
 import ru.mobileup.template.features.R
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
-import ru.mobileup.template.features.coin.domain.Currency
+import ru.mobileup.template.core.common_domain.Currency
 
 @Composable
 fun CoinListUi(
@@ -75,7 +76,8 @@ fun CoinListUi(
                 if (coins.isNotEmpty()) {
                     CoinListContent(
                         coins = coins,
-                        onCoinClick = component::onCoinClick
+                        onCoinClick = component::onCoinClick,
+                        selectedCurrency = selectedCurrency
                     )
                 } else {
                     EmptyPlaceholder(description = stringResource(id = R.string.coin_ui_error))
@@ -127,6 +129,7 @@ fun CurrencyRow(
 private fun CoinListContent(
     coins: List<Coin>,
     onCoinClick: (CoinId) -> Unit,
+    selectedCurrency: Currency,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -137,7 +140,7 @@ private fun CoinListContent(
             items = coins,
             key = { it.id.value }
         ) { coin ->
-            CoinItem(coin = coin, onClick = { onCoinClick(coin.id) })
+            CoinItem(coin = coin, onClick = { onCoinClick(coin.id) }, currency = selectedCurrency)
         }
     }
 }
@@ -146,6 +149,7 @@ private fun CoinListContent(
 private fun CoinItem(
     coin: Coin,
     onClick: () -> Unit,
+    currency: Currency,
     modifier: Modifier = Modifier
 ) {
 
@@ -187,7 +191,7 @@ private fun CoinItem(
         Column {
             Text(
                 modifier = Modifier.align(Alignment.End),
-                text = coin.currentPrice,
+                text = formatCurrency(coin.currentPrice, currency),
                 style = TextStyle(
                     color = Color.Black,
                     fontWeight = FontWeight(600),
