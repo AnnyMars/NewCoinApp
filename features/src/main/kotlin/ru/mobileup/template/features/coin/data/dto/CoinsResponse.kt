@@ -2,7 +2,6 @@ package ru.mobileup.template.features.coin.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import ru.mobileup.template.core.utils.pricePercentageFormatter
 import ru.mobileup.template.features.coin.domain.Coin
 import ru.mobileup.template.features.coin.domain.CoinId
 
@@ -23,7 +22,6 @@ data class CoinsResponse(
                 name = name,
                 currentPrice = currentPrice.toString(),
                 image = image,
-//                priceChangePercentage24h = pricePercentageFormatter(priceChangePercentage24h)
                 priceChangePercentage24h = priceChangePercentage24h
             )
         }

@@ -42,7 +42,7 @@ class RealCoinComponent(
         is ChildConfig.Details -> TODO()
     }
 
-    private fun onCoinListOutput (output: CoinListComponent.Output){
+    private fun onCoinListOutput(output: CoinListComponent.Output) {
         when (output){
             is CoinListComponent.Output.CoinDetailRequested -> {
                 navigation.push(ChildConfig.Details(output.coinId))

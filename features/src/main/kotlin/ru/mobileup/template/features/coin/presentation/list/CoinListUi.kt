@@ -33,11 +33,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.request.CachePolicy
 import coil.request.ImageRequest
 import ru.mobileup.template.core.theme.AppTheme
 import ru.mobileup.template.core.theme.custom.CustomTheme
-import ru.mobileup.template.core.utils.pricePercentageFormatter
+import ru.mobileup.template.core.utils.formatPricePercentage
 import ru.mobileup.template.core.widget.EmptyPlaceholder
 import ru.mobileup.template.core.widget.PullRefreshLceWidget
 import ru.mobileup.template.features.R
@@ -197,7 +196,7 @@ private fun CoinItem(
             )
             Text(
                 modifier = Modifier.align(Alignment.End),
-                text = pricePercentageFormatter(coin.priceChangePercentage24h),
+                text = formatPricePercentage(coin.priceChangePercentage24h),
                 style = TextStyle(
                     color = Color.Gray,
                     fontWeight = FontWeight(400),
